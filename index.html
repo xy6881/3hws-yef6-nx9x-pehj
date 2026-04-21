@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>官方正版授權驗證</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0; padding: 0;
+            display: flex; justify-content: center; align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #FCF9F2 0%, #F0E5D1 100%);
+            font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+        }
+        .redirect-card {
+            background-color: #FFFFFF;
+            width: 90%; max-width: 400px;
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            border-top: 5px solid #D4AF37;
+        }
+        .loader-wrapper {
+            position: relative;
+            width: 160px; height: 160px;
+            margin: 0 auto 25px;
+            display: flex; justify-content: center; align-items: center;
+        }
+        .progress-svg { transform: rotate(-90deg); width: 160px; height: 160px; }
+        .progress-bg { fill: none; stroke: #F0E5D1; stroke-width: 6; }
+        .progress-bar {
+            fill: none; stroke: #D4AF37; stroke-width: 6;
+            stroke-linecap: round; stroke-dasharray: 440; stroke-dashoffset: 440;
+        }
+        .logo-placeholder { width: 80px; height: auto; position: absolute; z-index: 2; }
+        h2 { color: #333333; font-size: 18px; margin-bottom: 10px; font-weight: 600; }
+        .session-info {
+            font-size: 12px; color: #A0A0A0; font-family: monospace;
+            margin-bottom: 20px; background: #F9F9F9; padding: 8px; border-radius: 6px;
+        }
+        .manual-wrapper { margin-bottom: 25px; }
+        .manual-text { font-size: 12px; color: #999; margin-bottom: 8px; }
+        .manual-btn {
+            display: inline-block; color: #D4AF37; text-decoration: none;
+            font-size: 14px; font-weight: bold; padding: 8px 20px;
+            border: 1px solid #D4AF37; border-radius: 20px; transition: all 0.3s ease;
+        }
+        .manual-btn:hover { background-color: #D4AF37; color: #FFFFFF; }
+        .trust-badges {
+            padding-top: 20px; border-top: 1px dashed #E0E0E0;
+            display: flex; justify-content: center; gap: 15px;
+        }
+        .badge { font-size: 13px; color: #666666; display: flex; align-items: center; gap: 5px; }
+        .badge::before { content: '\2714'; color: #28A745; font-weight: bold; }
+    </style>
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YTZW1QE0YS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YTZW1QE0YS');
+</script>
+
+<body>
+
+    <div class="redirect-card">
+        <div class="loader-wrapper">
+            <svg class="progress-svg">
+                <circle class="progress-bg" cx="80" cy="80" r="70"></circle>
+                <circle class="progress-bar" id="bar" cx="80" cy="80" r="70"></circle>
+            </svg>
+            <img src="/assets/images/1776420761.png" alt="Logo" class="logo-placeholder">
+        </div>
+        
+        <h2 id="status-text">環境檢測中...</h2>
+        
+        <div class="session-info" id="session-id">LOADING SESSION...</div>
+
+        <div class="manual-wrapper">
+            <div class="manual-text">沒有自動跳轉?</div>
+            <a href="https://ry6668.com/ag/metameta/auth/register" class="manual-btn">手動進入官網</a>
+        </div>
+        
+        <div class="trust-badges">
+            <div class="badge">正版授權</div>
+            <div class="badge">安全防護</div>
+            <div class="badge">杜絕山寨</div>
+        </div>
+    </div>
+
+    <script>
+        const targetUrl = "https://ry6668.com/ag/metameta/auth/register";
+        const totalDuration = 4800;
+        const bar = document.getElementById('bar');
+        const statusText = document.getElementById('status-text');
+        
+        const randomId = Math.random().toString(36).substring(2, 12).toUpperCase();
+        document.getElementById('session-id').innerText = `SESSION ID: ${randomId}-METAX`;
+
+        let startTime = null;
+
+        function animate(currentTime) {
+            if (!startTime) startTime = currentTime;
+            const elapsed = currentTime - startTime;
+            const timeProgress = Math.min(elapsed / totalDuration, 1);
+
+            let visualProgress;
+            if (timeProgress < 0.3) {
+                visualProgress = timeProgress * 1.5;
+                statusText.innerText = "正在連線網站...";
+            } else if (timeProgress < 0.7) {
+                visualProgress = 0.45 + (timeProgress - 0.3) * 0.5;
+                statusText.innerText = "惡意軟體檢查通過...";
+            } else {
+                visualProgress = 0.65 + (timeProgress - 0.7) * 1.16;
+                statusText.innerText = "已分配安全通道!";
+            }
+
+            const offset = 440 - (Math.min(visualProgress, 1) * 440);
+            bar.style.strokeDashoffset = offset;
+
+            if (timeProgress < 1) {
+                requestAnimationFrame(animate);
+            } else {
+                window.location.replace(targetUrl);
+            }
+        }
+
+        window.onload = () => requestAnimationFrame(animate);
+    </script>
+
+</body>
+</html>
