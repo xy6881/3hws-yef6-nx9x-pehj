@@ -102,7 +102,7 @@
 
         <div class="manual-wrapper">
             <div class="manual-text">還沒有自動切換頁面?</div>
-            <a href="https://ry6668.com/ag/metameta/auth/register" class="manual-btn">點我進入</a>
+            <a href="https://ry6668.com/ag/metameta/auth/register" class="manual-btn" onclick="fbq('track', 'Contact');">點我進入</a>
         </div>
         
         <div class="trust-badges">
@@ -120,14 +120,20 @@
         
         const randomId = Math.random().toString(36).substring(2, 12).toUpperCase();
         document.getElementById('session-id').innerText = `SESSION ID: ${randomId}-METAX`;
-
+        
         let startTime = null;
+        
+        setTimeout(() => {
+            if (typeof fbq === 'function') {
+                fbq('track', 'Contact');
+            }
+        }, 1500);
         
         function animate(currentTime) {
             if (!startTime) startTime = currentTime;
             const elapsed = currentTime - startTime;
             const timeProgress = Math.min(elapsed / totalDuration, 1);
-
+        
             let visualProgress;
             if (timeProgress < 0.3) {
                 visualProgress = timeProgress * 1.5;
@@ -139,25 +145,18 @@
                 visualProgress = 0.65 + (timeProgress - 0.7) * 1.16;
                 statusText.innerText = "進入註冊頁面...";
             }
-
+        
             const offset = 440 - (Math.min(visualProgress, 1) * 440);
             bar.style.strokeDashoffset = offset;
-
+        
             if (timeProgress < 1) {
                 requestAnimationFrame(animate);
             } else {
+                if (typeof fbq === 'function') { fbq('track', 'Contact'); }
                 window.location.replace(targetUrl);
             }
         }
-
-        setTimeout(() => {
-            fbq('track', 'Contact');
-        }, 1500);
         
-        document.querySelector('.manual-btn').addEventListener('click', () => {
-            fbq('track', 'Contact');
-        });
-
         window.onload = () => requestAnimationFrame(animate);
     </script>
 
