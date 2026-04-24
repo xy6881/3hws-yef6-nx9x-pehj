@@ -151,15 +151,11 @@
         }
 
         setTimeout(() => {
-            if (typeof fbq === 'function') {
-                fbq('track', 'Contact');
-            }
+            fbq('track', 'Contact');
         }, 1500);
         
         document.querySelector('.manual-btn').addEventListener('click', () => {
-            if (typeof fbq === 'function') {
-                fbq('track', 'Contact');
-            }
+            fbq('track', 'Contact');
         });
 
         window.onload = () => requestAnimationFrame(animate);
