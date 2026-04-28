@@ -152,7 +152,8 @@
             if (timeProgress < 1) {
                 requestAnimationFrame(animate);
             } else {
-                if (typeof fbq === 'function') { fbq('track', 'Contact'); }
+                //此版本刻意將自動跳轉者不計入成果次數
+                //if (typeof fbq === 'function') { fbq('track', 'Contact'); }
                 window.location.replace(targetUrl);
             }
         }
