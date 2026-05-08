@@ -1,83 +1,132 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>富88 - 正在進入官網</title>
     <style>
-        * { box-sizing: border-box; }
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            margin: 0; padding: 0;
-            display: flex; justify-content: center; align-items: center;
-            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
             background: linear-gradient(135deg, #FCF9F2 0%, #F0E5D1 100%);
             font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
         }
+
         .redirect-card {
             background-color: #FFFFFF;
-            width: 95%; max-width: 480px;
-            padding: 30px 20px;
+            width: 90%;
+            max-width: 420px;
+            padding: 20px 20px;
             border-radius: 20px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
             text-align: center;
-            border-top: 6px solid #D4AF37;
+            border-top: 5px solid #D4AF37;
         }
+
         .video-container {
             width: 100%;
-            margin-bottom: 20px;
-            border-radius: 12px;
+            margin-bottom: 15px;
+            border-radius: 10px;
             overflow: hidden;
         }
+
         .logo-video {
             width: 100%;
             height: auto;
             display: block;
         }
+
         .progress-container {
             width: 100%;
             display: flex;
             justify-content: space-between;
-            gap: 6px;
-            margin: 0 auto 25px;
+            gap: 5px;
+            margin: 0 auto 15px;
         }
+
         .progress-block {
             flex: 1;
-            height: 14px;
+            height: 12px;
             background-color: #F0E5D1;
             border-radius: 2px;
             transition: background-color 0.2s ease, box-shadow 0.2s ease;
         }
+
         .progress-block.active {
             background-color: #D4AF37;
             box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
         }
-        h2 { color: #333333; font-size: 20px; margin-bottom: 15px; font-weight: 600; }
-        .manual-wrapper { margin-bottom: 25px; }
-        .manual-text { font-size: 12px; color: #999; margin-bottom: 8px; }
+
+        h2 {
+            color: #333333;
+            font-size: 18px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .manual-wrapper {
+            margin-bottom: 15px;
+        }
+
+        .manual-text {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 8px;
+        }
+
         .manual-btn {
-            display: inline-block; color: #D4AF37; text-decoration: none;
-            font-size: 14px; font-weight: bold; padding: 8px 20px;
-            border: 1px solid #D4AF37; border-radius: 20px; transition: all 0.3s ease;
+            display: inline-block;
+            color: #D4AF37;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+            padding: 6px 16px;
+            border: 1px solid #D4AF37;
+            border-radius: 20px;
+            transition: all 0.3s ease;
         }
-        .manual-btn:hover { background-color: #D4AF37; color: #FFFFFF; }
+
+        .manual-btn:hover {
+            background-color: #D4AF37;
+            color: #FFFFFF;
+        }
+
         .trust-badges {
-            padding-top: 20px; border-top: 1px dashed #E0E0E0;
-            display: flex; justify-content: center; gap: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #E0E0E0;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
         }
-        .badge { font-size: 13px; color: #666666; display: flex; align-items: center; gap: 5px; }
-        .badge::before { content: '\2714'; color: #28A745; font-weight: bold; }
+
+        .badge {
+            font-size: 12px;
+            color: #666666;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .badge::before {
+            content: '\2714';
+            color: #28A745;
+            font-weight: bold;
+        }
     </style>
 </head>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-YTZW1QE0YS"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-YTZW1QE0YS');
-</script>
+<!-- GA4 Tracking will be initialized at the bottom -->
 
 <body>
 
@@ -91,14 +140,14 @@
         <div class="progress-container" id="progress-blocks">
             <!-- Blocks generated by JS -->
         </div>
-        
+
         <h2 id="status-text">載入中...</h2>
 
         <div class="manual-wrapper">
             <div class="manual-text">沒有自動跳轉?</div>
             <a href="https://ry6668.com/ag/metameta/auth/register" class="manual-btn">手動進入官網</a>
         </div>
-        
+
         <div class="trust-badges">
             <div class="badge">正版授權</div>
             <div class="badge">安全防護</div>
@@ -112,7 +161,7 @@
         const statusText = document.getElementById('status-text');
         const blocksContainer = document.getElementById('progress-blocks');
         const numBlocks = 12;
-        
+
         // Initialize blocks
         for (let i = 0; i < numBlocks; i++) {
             const block = document.createElement('div');
@@ -120,7 +169,7 @@
             blocksContainer.appendChild(block);
         }
         const blocks = blocksContainer.getElementsByClassName('progress-block');
-        
+
         let startTime = null;
 
         function animate(currentTime) {
@@ -155,12 +204,52 @@
             if (timeProgress < 1) {
                 requestAnimationFrame(animate);
             } else {
+                trackEvent('auto_redirect', { 'destination': targetUrl });
                 window.location.replace(targetUrl);
             }
         }
 
-        window.onload = () => requestAnimationFrame(animate);
+        // --- GA4 Tracking Configuration ---
+        const GA_CONFIG = {
+            id: 'G-YTZW1QE0YS' // ⬅️ 這裡編輯您的 GA ID
+        };
+
+        function initGA() {
+            if (!GA_CONFIG.id) return;
+
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_CONFIG.id}`;
+            document.head.appendChild(script);
+
+            window.dataLayer = window.dataLayer || [];
+            window.gtag = function () { dataLayer.push(arguments); };
+            gtag('js', new Date());
+            gtag('config', GA_CONFIG.id);
+            console.log(`GA4 Initialized: ${GA_CONFIG.id}`);
+        }
+
+        function trackEvent(eventName, params = {}) {
+            if (window.gtag) {
+                gtag('event', eventName, params);
+            }
+        }
+
+        // Add event listeners for button clicks
+        document.querySelector('.manual-btn').addEventListener('click', (e) => {
+            trackEvent('manual_button_click', {
+                'button_name': 'manual_redirect',
+                'destination': targetUrl
+            });
+        });
+
+        window.onload = () => {
+            initGA();
+            trackEvent('page_load', { 'page_title': document.title });
+            requestAnimationFrame(animate);
+        };
     </script>
 
 </body>
+
 </html>
